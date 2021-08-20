@@ -1,12 +1,24 @@
 import React from 'react';
 import './TrackList.css';
 import Track from '../Track/Track';
+import PlayList from '../PlayList/PlayList';
 
 class TrackList extends React.Component {
-	render() {
+	checkForTrack() {
+		
+		if(PlayList.track === TrackList.track) {
+			console.log(`don't return`)
+		}else console.log('return')
+	}
+	logvalues() {
+		console.log('{this.props.track.album} | {this.props.track.artist}', <Track/>)
+	}
+
+	render(track) {
 		return (
 			<div className="TrackList">
-				{this.props.tracks.map((track) => {
+				
+				{true ? this.props.tracks.map((track) => {
 					return (
 						<Track
 							onAdd={this.props.onAdd}
@@ -16,7 +28,7 @@ class TrackList extends React.Component {
 							key={track.id}
 						/>
 					);
-				})}
+				}) : 'black'}
 			</div>
 		);
 	}
