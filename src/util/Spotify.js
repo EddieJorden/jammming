@@ -1,9 +1,21 @@
 let accessToken = '';
+let userId = '';
 
 const clientId = '61f83afec4ac462b90b05d4150d419ea';
 const redirectUri = 'http://localhost:3000/';
 
+
+
 const Spotify = {
+	getCurrentUserId() {
+		if(true) {
+			
+		}
+		return fetch(`https://api.spotify.com/v1/me`, {
+			headers: 'ß'
+		})
+	},
+
 	getAccessToken() {
 		if (accessToken) {
 			return accessToken;
@@ -83,6 +95,15 @@ const Spotify = {
 					});
 			});
 	},
+
+	getUserPlaylists() {
+		let userId
+		return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+			headers: {
+
+			}
+		})
+	}
 };
 
 export default Spotify;

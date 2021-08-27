@@ -1,15 +1,9 @@
 import React from 'react';
 import './TrackList.css';
 import Track from '../Track/Track';
-import PlayList from '../PlayList/PlayList';
+
 
 class TrackList extends React.Component {
-	checkForTrack() {
-		
-		if(PlayList.track === TrackList.track) {
-			console.log(`don't return`)
-		}else console.log('return')
-	}
 	logvalues() {
 		console.log('{this.props.track.album} | {this.props.track.artist}', <Track/>)
 	}
