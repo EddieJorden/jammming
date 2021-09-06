@@ -1,6 +1,7 @@
 
 
 
+
 let accessToken = '';
 
 
@@ -10,10 +11,25 @@ const redirectUri = 'http://localhost:3000/';
 let userId = 'fred'
 
 const Spotify = {
-	// const [userId, setUserId] = useState('')
+
+
+	getCurrentUserId() {	
+		const headers = { Authorization: `Bearer ${accessToken}`}
+
+		return fetch(`https://api.spotify.com/v1/me`, {
+			headers: headers,
+		})
+			.then((response) => response.json())
+			.then((jsonResponse) => {
+				userId = jsonResponse.id
+				console.log('userId', userId)
+		})
+	},			
+	
 
 	getAccessToken() {
 		if (accessToken) {
+			console.log(accessToken)
 			return accessToken;
 		}
 
@@ -40,6 +56,11 @@ const Spotify = {
 	search(term) {
 		// possible other url?
 		// return fetch(`https://api.spotify.com/v1/search`)
+
+		Spotify.getAccessToken()
+		Spotify.getCurrentUserId()
+
+
 		console.log(accessToken)
 		return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
 			headers: {
@@ -69,33 +90,38 @@ const Spotify = {
 	},
 
 
+	// this is the code running in app.js 
+
+	// savePlaylist() {
+	// 	const trackUris = this.state.playlistTracks.map((track) => track.uri);
+	// 	Spotify.savePlaylist(this.state.playlistName, trackUris)
+	// 		.then(() => {
+	// 		this.setState({ searchResults: [] });
+	// 	});
+	// }
+
+
+
+
 	savePlaylist(name, trackUris) {
-		
+		console.log('trackUris', trackUris)
+		console.log('userId', userId)
 		const headers = { Authorization: `Bearer ${accessToken}` };
+
+
 		
-		this.getCurrentUserId()
 
-
-
-		// if (!name || !trackUris.length) {
-		// 	return;
-		// }
-		// return fetch(`https://api.spotify.com/v1/me`, {
-		// 	headers: headers,
-		// })
-		// 	.then((response) => response.json())
-		// 	.then((jsonResponse) => {
-		// 		userId = jsonResponse.id;
-
-
-				return fetch(`https://api.spotify.com/v1/users /${userId}/playlists`, {
+				return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
 					headers: headers,
 					method: 'POST',
 					body: JSON.stringify({ name: name }),
 				})
 					.then((response) => response.json())
+					
 					.then((jsonResponse) => {
 						const playlistId = jsonResponse.id;
+						// playlistId is undefined at this point
+						console.log('jsonResponse.id', jsonResponse)
 						return fetch(
 							`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`,
 							{
@@ -109,61 +135,24 @@ const Spotify = {
 	},
 
 
-	getUserPlaylists() {
-		const headers = { Authorization: `Bearer ${accessToken}` };
+	// getUserPlaylists() {
+	// 	const headers = { Authorization: `Bearer ${accessToken}` };
 		
 
-		return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
-			headers: headers,
-		})
-			.then((response) => response.json())
-			.then((jsonResponse) => {
-				userId = jsonResponse.id;
-				return fetch()
-					// headers: headers,
-					// method: '',
-					// body: JSON.stringify({})
-				})
+	// 	return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+	// 		headers: headers,
+	// 	})
+	// 		.then((response) => response.json())
+	// 		.then((jsonResponse) => {
+	// 			userId = jsonResponse.id;
+	// 			return fetch()
+	// 				// headers: headers,
+	// 				// method: '',
+	// 				// body: JSON.stringify({})
+	// 			})
 			
-	},
+	// },
 
-
-	getCurrentUserId() {
-
-
-		const headers = { Authorization: `Bearer ${accessToken}`}
-		
-		
-
-
-		// if (!name || !trackUris.length) {
-		// 	return;
-		// }
-		return fetch(`https://api.spotify.com/v1/me`, {
-			headers: headers,
-		})
-			.then((response) => response.json())
-			.then((jsonResponse) => {userId = jsonResponse.id})
-			.then((userId) => console.log(userId))
-	},			
-
-
-		// if(userId === '') {
-		// 	return fetch(`https://api.spotify.com/v1/me`, {
-		// 		headers: headers,
-		// 	})
-		// 		.then((response) => response.json())
-		// 		.then((jsonResponse) => {
-		// 			userId = jsonResponse.id;
-		// 			return userId
-		// 		})
-			
-
-			
-		// }else return userId
-	
-		
-	
 
 
 	
