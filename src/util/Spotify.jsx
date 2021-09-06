@@ -146,19 +146,21 @@ const Spotify = {
 
 	getUserPlaylists() {
 		const headers = { Authorization: `Bearer ${accessToken}` };
+		console.log('userId inside getUserPlaylists', userId)
 		
 		return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
 			headers: headers,
 		})
 		.then((response) => {
 			console.log('userId inside of getUserPlaylist', userId)
-			console.log('response.json', response)
+			console.log('response.json in Spotify.getUserPlaylist', response)
 			return response.json();
 		})
 		.then((jsonResponse) => {
-			console.log('jsonResponse', jsonResponse)
-			console.log(jsonResponse.items[0])
+			console.log('jsonResponse in Spotify.getUserPlaylist', jsonResponse)
+			// console.log('jsonResponse[0]', jsonResponse[0])
 		})	
+
 	}
 }
 
