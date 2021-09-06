@@ -3,12 +3,12 @@
 
 
 let accessToken = '';
+let userId = 'fred'
 
 
 const clientId = '61f83afec4ac462b90b05d4150d419ea';
 const redirectUri = 'http://localhost:3000/';
 
-let userId = 'fred'
 
 const Spotify = {
 
@@ -22,14 +22,14 @@ const Spotify = {
 			.then((response) => response.json())
 			.then((jsonResponse) => {
 				userId = jsonResponse.id
-				console.log('userId', userId)
+				console.log('userId second verification', userId)
 		})
 	},			
 	
 
 	getAccessToken() {
 		if (accessToken) {
-			console.log(accessToken)
+			console.log('accessToken', accessToken)
 			return accessToken;
 		}
 
@@ -57,11 +57,9 @@ const Spotify = {
 		// possible other url?
 		// return fetch(`https://api.spotify.com/v1/search`)
 
-		Spotify.getAccessToken()
-		Spotify.getCurrentUserId()
 
-
-		console.log(accessToken)
+		console.log('accessToken', accessToken)
+		console.log('userId verification', userId)
 		return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
 			headers: {
 				Authorization: `Bearer ${accessToken}`,
@@ -69,6 +67,7 @@ const Spotify = {
 			},
 		})
 			.then((response) => {
+				console.log('response.json()', response)
 				return response.json();
 			})
 			.then((jsonResponse) => {
