@@ -1,13 +1,19 @@
 import React from 'react';
 import './App.css';
 
-import SearchBar from '../SearchBar/SearchBar.js';
-import SearchResults from '../SearchResults/SearchResults.js';
-import PlayList from '../PlayList/PlayList.js';
+import SearchBar from '../SearchBar/SearchBar.jsx';
+import SearchResults from '../SearchResults/SearchResults.jsx';
+import PlayList from '../PlayList/PlayList.jsx';
 
-import Spotify from '../../util/Spotify';
+import Spotify from '../../util/Spotify.jsx';
 
-Spotify.getAccessToken();
+
+
+	Spotify.getAccessToken();
+	Spotify.getCurrentUserId();
+	Spotify.getUserPlaylists();
+
+
 
 class App extends React.Component {
 	constructor(props) {
@@ -25,6 +31,8 @@ class App extends React.Component {
 			playlistTracks: [],
 		};
 	}
+
+
 
 	search(term) {
 		Spotify.search(term).then((searchResults) => {
@@ -53,12 +61,30 @@ class App extends React.Component {
 		this.setState({ playlistName: name });
 	}
 
+
+
 	savePlaylist() {
 		const trackUris = this.state.playlistTracks.map((track) => track.uri);
-		Spotify.savePlaylist(this.state.playlistName, trackUris).then(() => {
+		console.log('trackUris inside savePlaylist', trackUris)
+
+		if (trackUris.length <= 0) {
+			console.log('trackUris is true', trackUris)
+			return
+		} else {
+			Spotify.savePlaylist(this.state.playlistName, trackUris)
+			.then(() => {
 			this.setState({ searchResults: [] });
+			console.log('this.state = ', this.state)
+			console.log('trackUris after fetch', trackUris)
 		});
+		}
+		
+		
+	
+
+		
 	}
+	
 
 	render() {
 		return (
