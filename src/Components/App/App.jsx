@@ -9,9 +9,13 @@ import Spotify from '../../util/Spotify.jsx';
 
 
 
+const userDataFetch = async() => {
 	Spotify.getAccessToken();
-	Spotify.getCurrentUserId();
-	Spotify.getUserPlaylists();
+	await Spotify.getCurrentUserId();
+	await Spotify.getUserPlaylists();
+}
+
+userDataFetch()
 
 
 
@@ -65,17 +69,19 @@ class App extends React.Component {
 
 	savePlaylist() {
 		const trackUris = this.state.playlistTracks.map((track) => track.uri);
-		console.log('trackUris inside savePlaylist', trackUris)
+		// console.log('trackUris inside savePlaylist', trackUris)
 
 		if (trackUris.length <= 0) {
-			console.log('trackUris is true', trackUris)
+			// console.log('trackUris is <= 0', trackUris)
 			return
 		} else {
 			Spotify.savePlaylist(this.state.playlistName, trackUris)
+			
 			.then(() => {
 			this.setState({ searchResults: [] });
-			console.log('this.state = ', this.state)
-			console.log('trackUris after fetch', trackUris)
+			// console.log('this.state.playlistName', this.state.playlistName)
+			// console.log('this.state = ', this.state)
+			// console.log('trackUris after fetch', trackUris)
 		});
 		}
 		
