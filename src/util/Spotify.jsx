@@ -115,7 +115,7 @@ const Spotify = {
 		console.log('userId', userId)
 		const headers = { Authorization: `Bearer ${accessToken}` };
 
-
+		
 		
 
 				return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
@@ -127,7 +127,6 @@ const Spotify = {
 					
 					.then((jsonResponse) => {
 						const playlistId = jsonResponse.id;
-						
 						console.log('jsonResponse.id', jsonResponse)
 						return fetch(
 							`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`,
@@ -136,7 +135,10 @@ const Spotify = {
 								method: 'POST',
 								body: JSON.stringify({ uris: trackUris }),
 							}
-						);
+						);		
+						
+						
+
 					});
 		
 	},
@@ -144,27 +146,20 @@ const Spotify = {
 
 	getUserPlaylists() {
 		const headers = { Authorization: `Bearer ${accessToken}` };
-		console.log('userId inside of getUserPlaylist', userId)
-
+		
 		return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
 			headers: headers,
 		})
 		.then((response) => {
+			console.log('userId inside of getUserPlaylist', userId)
 			console.log('response.json', response)
 			return response.json();
 		})
 		.then((jsonResponse) => {
 			console.log('jsonResponse', jsonResponse)
 			console.log(jsonResponse.items[0])
-			
-			// return jsonResponse.playlists
-		})
-		
+		})	
 	}
-
-
-
-	
 }
 
 // const currentUserId = Spotify.getCurrentUserId()
