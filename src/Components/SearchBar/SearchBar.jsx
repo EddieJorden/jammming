@@ -18,13 +18,18 @@ class SearchBar extends React.Component {
 	}
 
 	search() {
-		this.props.onSearch(this.state.term);
+		if (this.state.term) {
+
+			this.props.onSearch(this.state.term);
+		} return
+		
 	}
 
 
 	handleTermChange(event) {
 		// Spotify.getCurrentUserId()
 		this.setState({ term: event.target.value });
+		console.log(this.state.term)
 	}
 
 	handleKeypress(e) {

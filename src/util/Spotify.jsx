@@ -22,7 +22,7 @@ const Spotify = {
 			.then((response) => response.json())
 			.then((jsonResponse) => {
 				userId = jsonResponse.id
-				console.log('userId second verification', userId)
+				console.log('userId inside Spotify.getCurrentUserId verification', userId)
 		})
 	},			
 	
@@ -56,7 +56,10 @@ const Spotify = {
 	search(term) {
 		// possible other url?
 		// return fetch(`https://api.spotify.com/v1/search`)
-
+		if (term === "") {
+			console.log("no term entered")
+			
+		}
 
 		console.log('accessToken', accessToken)
 		console.log('userId verification', userId)
@@ -67,7 +70,12 @@ const Spotify = {
 			},
 		})
 			.then((response) => {
-				console.log('response.json()', response)
+				console.log('response', response 
+				
+
+				
+				
+				)
 				return response.json();
 			})
 			.then((jsonResponse) => {
@@ -119,7 +127,7 @@ const Spotify = {
 					
 					.then((jsonResponse) => {
 						const playlistId = jsonResponse.id;
-						// playlistId is undefined at this point
+						
 						console.log('jsonResponse.id', jsonResponse)
 						return fetch(
 							`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`,
@@ -134,23 +142,25 @@ const Spotify = {
 	},
 
 
-	// getUserPlaylists() {
-	// 	const headers = { Authorization: `Bearer ${accessToken}` };
-		
+	getUserPlaylists() {
+		const headers = { Authorization: `Bearer ${accessToken}` };
+		console.log('userId inside of getUserPlaylist', userId)
 
-	// 	return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
-	// 		headers: headers,
-	// 	})
-	// 		.then((response) => response.json())
-	// 		.then((jsonResponse) => {
-	// 			userId = jsonResponse.id;
-	// 			return fetch()
-	// 				// headers: headers,
-	// 				// method: '',
-	// 				// body: JSON.stringify({})
-	// 			})
+		return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+			headers: headers,
+		})
+		.then((response) => {
+			console.log('response.json', response)
+			return response.json();
+		})
+		.then((jsonResponse) => {
+			console.log('jsonResponse', jsonResponse)
+			console.log(jsonResponse.items[0])
 			
-	// },
+			// return jsonResponse.playlists
+		})
+		
+	}
 
 
 
