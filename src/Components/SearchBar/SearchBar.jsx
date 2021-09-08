@@ -14,7 +14,7 @@ class SearchBar extends React.Component {
 		this.handleTermChange = this.handleTermChange.bind(this);
 		this.state = { term: '' };
 		this.handleKeypress = this.handleKeypress.bind(this)
-		console.log({props})
+		// console.log({props})
 	}
 
 	search() {
@@ -22,6 +22,7 @@ class SearchBar extends React.Component {
 
 			this.props.onSearch(this.state.term);
 		} return
+
 		
 	}
 
@@ -29,12 +30,12 @@ class SearchBar extends React.Component {
 	handleTermChange(event) {
 		// Spotify.getCurrentUserId()
 		this.setState({ term: event.target.value });
-		console.log(this.state.term)
+		// console.log(this.state.term)
 	}
 
 	handleKeypress(e) {
 		if (e.charCode === 13) {
-			console.log(e)
+			// console.log(e)
 			this.search()
 		}
 	}

@@ -5,7 +5,7 @@ import Track from '../Track/Track';
 
 class TrackList extends React.Component {
 	logvalues() {
-		console.log('{this.props.track.album} | {this.props.track.artist}', <Track/>)
+		// console.log('{this.props.track.album} | {this.props.track.artist}', <Track/>)
 	}
 
 	render(track) {

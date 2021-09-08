@@ -9,13 +9,6 @@ import Spotify from '../../util/Spotify.jsx';
 
 
 
-const userDataFetch = async() => {
-	Spotify.getAccessToken();
-	await Spotify.getCurrentUserId();
-	await Spotify.getUserPlaylists();
-}
-
-userDataFetch()
 
 
 
@@ -28,14 +21,60 @@ class App extends React.Component {
 		this.updatePlaylistName = this.updatePlaylistName.bind(this);
 		this.savePlaylist = this.savePlaylist.bind(this);
 		this.search = this.search.bind(this);
+		this.userData = this.userDataFetch()
+
+		// console.log('this.userPlaylists', this.userPlaylists)
+		// console.log('Spotify.getUserPlaylists()', Spotify.getUserPlaylists())
+		// console.log('props object :) ', props)
 
 		this.state = {
 			searchResults: [],
 			playlistName: 'playlistName',
 			playlistTracks: [],
-		};
+			userDataObject: {},
+			accessToken: Spotify.getAccessToken(),
+			userId: Spotify.getCurrentUserId(),
+			playlists: Spotify.getUserPlaylists(),
+			
+
+		}
+	}
+	createDataFetchObject() {
+		
 	}
 
+	userDataFetch = async() => {
+		
+		
+
+		const accessToken = await Spotify.getAccessToken();
+		const userId  = await Spotify.getCurrentUserId();
+		const userPlaylist =  await Spotify.getUserPlaylists();
+
+		// console.log('this.userId', this.state.userId)
+		// console.log('playlists', this.state.playlists)
+		
+		 
+			this.state.userDataObject = {
+				accessToken: accessToken, 
+				userId: userId, 
+				playlists: userPlaylist
+			}
+			// console.log('this.userDataObject.userId', this.userDataObject)
+			// console.log('userId', Spotify.getCurrentUserId())
+			console.log(this.state.userDataObject)
+		
+		// console.log(Spotify.getAccessToken())
+		
+		
+		// await console.log('Spotify.getUserPlaylists()', Spotify.getUserPlaylists())
+		
+		
+		
+
+	}
+	// const userPlaylists = userDataFetch()
+	// console.log('userPlaylists', userPlaylists)
 
 
 	search(term) {
@@ -88,11 +127,11 @@ class App extends React.Component {
 		
 	
 
-		
+		// console.log('this.userPlaylists', userPlaylists)
 	}
 	
 
-	render() {
+	render(userPlaylists) {
 		return (
 			<div>
 				<h1>
@@ -111,6 +150,8 @@ class App extends React.Component {
 							onRemove={this.removeTrack}
 							onNameChange={this.updatePlaylistName}
 							onSave={this.savePlaylist}
+							// playlistList={this.userDataObject}
+							userPlaylist={this.state.userDataObject}
 						/>
 					</div>
 				</div>
