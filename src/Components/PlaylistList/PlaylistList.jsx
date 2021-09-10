@@ -1,34 +1,40 @@
 import React from 'react'
-import './PlaylistLists.css'
 
 
 
-
-
-
-class PlaylistLists extends React.Component {
+class PlaylistList extends React.Component {
     constructor(props) {
         super(props)
-        this.search = this.search.bind(this)
-
+        // console.log('props from in PlaylistList', props.playlistArray)
+        this.playListName = props.playlistArray.playListName
+        // console.log('this.playListName', this.playListName)
+        // console.log('working with props object', props)
     }
 
-    // retrieveCurrentUserPlaylists() {
     
-    // }
+    playlistReturn() { 
+        let playlistName = ''
 
-    search() {
-        console.log("search button clicked")
+        for (let i = 0; i < this.props.playlistArray.length; i++) {
+            playlistName = this.props.playlistArray[i]
+            return <div>{playlistName}</div>
+        }
+
+        
+        
     }
 
+    pushPlaylistNames() {
+        <div>{this.playListName}</div> 
+    }
+    
     render() {
         return (
-            <div className="userPlaylists">
-                User Playlist
-                
+            <div className='saved-playlists' >
+                {this.playlistReturn()}
             </div>
         )
     }
 }
 
-export default PlaylistLists
+export default PlaylistList
