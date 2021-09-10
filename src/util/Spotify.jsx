@@ -4,6 +4,7 @@
 
 let accessToken = '';
 let userId = 'fred'
+let playlistArray = []
 
 
 const clientId = '61f83afec4ac462b90b05d4150d419ea';
@@ -12,8 +13,23 @@ const redirectUri = 'http://localhost:3000/';
 
 const Spotify = {
 
+	async fetchUserStuff() {
+	
+			await this.getAccessToken()
+			await this.getCurrentUserId()
+			await this.getUserPlaylists()
+			return {
+				accessToken: this.accessToken,
+				userId: this.userId,
+				playlistArray: this.playlistArray
+			}
+		
+		
+	},
+
 
 	getCurrentUserId() {	
+
 		const headers = { Authorization: `Bearer ${accessToken}`}
 
 		return fetch(`https://api.spotify.com/v1/me`, {
@@ -52,6 +68,49 @@ const Spotify = {
 			const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
 			window.location = accessUrl;
 		}
+	},
+
+
+	getUserPlaylists() {
+		const headers = { Authorization: `Bearer ${accessToken}` };
+		// console.log('userId inside getUserPlaylists', userId)
+		
+		// console.log('playlistArray of items', playlistArray)
+
+		
+		return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+			headers: headers,
+		})
+		.then((response) => {
+			// console.log('userId inside of getUserPlaylist', userId)
+			// console.log('response.json in Spotify.getUserPlaylist', response)
+			return response.json();
+		})
+		.then((jsonResponse) => {
+			// console.log('jsonResponse in Spotify.getUserPlaylist', jsonResponse.items)
+			// console.log('jsonResponse[0]', jsonResponse[0])
+			// playlistArray.push(jsonResponse[i].name)
+			// 	console.log(playlistArray)
+			// console.log('jsonResponse', jsonResponse)
+			
+			
+			for(let i = 0; i < jsonResponse.items.length; i++) {
+				
+				// console.log('jsonResponse[i] in iterator', jsonResponse.items[i])
+				playlistArray.push(jsonResponse.items[i].name)
+				
+			}
+			// console.log('playlistArray inside Spotify.getUserPlaylists', playlistArray)
+
+
+			
+			// array of objects
+			return playlistArray
+			
+			
+			// console.log('playlistArray from Spotify.getUserPlaylists', playlistArray[0].name)
+		})	
+
 	},
 
 
@@ -139,44 +198,7 @@ const Spotify = {
 	},
 
 
-	getUserPlaylists() {
-		const headers = { Authorization: `Bearer ${accessToken}` };
-		// console.log('userId inside getUserPlaylists', userId)
-		let playlistArray = []
-		// console.log('playlistArray of items', playlistArray)
 
-		
-		return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
-			headers: headers,
-		})
-		.then((response) => {
-			// console.log('userId inside of getUserPlaylist', userId)
-			// console.log('response.json in Spotify.getUserPlaylist', response)
-			return response.json();
-		})
-		.then((jsonResponse) => {
-			// console.log('jsonResponse in Spotify.getUserPlaylist', jsonResponse.items)
-			// console.log('jsonResponse[0]', jsonResponse[0])
-			// playlistArray.push(jsonResponse[i].name)
-			// 	console.log(playlistArray)
-			// console.log('jsonResponse', jsonResponse)
-			
-			for(let i = 0; i < jsonResponse.items.length; i++) {
-				// console.log('jsonResponse[i] in iterator', jsonResponse.items[i])
-				playlistArray.push(jsonResponse.items[i].name)
-			}
-			// console.log('playlistArray inside Spotify.getUserPlaylists', playlistArray)
-
-
-			
-			// array of objects
-			return playlistArray
-			
-			
-			// console.log('playlistArray from Spotify.getUserPlaylists', playlistArray[0].name)
-		})	
-
-	}
 }
 
 // const currentUserId = Spotify.getCurrentUserId()

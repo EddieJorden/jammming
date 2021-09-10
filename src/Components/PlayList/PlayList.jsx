@@ -6,10 +6,11 @@ import PlaylistList from '../PlaylistList/PlaylistList';
 class PlayList extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log('props', props)
+		
 		this.handleNameChange = this.handleNameChange.bind(this);
 
-		this.playlistListArray = props.playListName
+		this.playlistListArray = props
+		
 		// console.log('this.props in being passed down from app to playlist', this.playlistListArray)
 	}
 

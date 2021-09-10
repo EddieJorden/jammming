@@ -21,48 +21,57 @@ class App extends React.Component {
 		this.updatePlaylistName = this.updatePlaylistName.bind(this);
 		this.savePlaylist = this.savePlaylist.bind(this);
 		this.search = this.search.bind(this);
-		this.userData = this.userDataFetch()
+		this.userData = Spotify.fetchUserStuff()
 
 		// console.log('this.userPlaylists', this.userPlaylists)
 		// console.log('Spotify.getUserPlaylists()', Spotify.getUserPlaylists())
 		// console.log('props object :) ', props)
 
+		
+
 		this.state = {
 			searchResults: [],
 			playlistName: 'playlistName',
 			playlistTracks: [],
-			userDataObject: {},
-			accessToken: Spotify.getAccessToken(),
-			userId: Spotify.getCurrentUserId(),
-			playlists: Spotify.getUserPlaylists(),
+			// userDataObject: this.userDataFetch(),
+			accessToken: Spotify.getAccessToken,
+			userId: Spotify.getCurrentUserId,
+			playlists: Spotify
 			
 
 		}
+		// console.log('this.state.userDataObject', this.state.userDataObject)
+		console.log('this.state.accessToken', this.state.accessToken)
+		console.log('userId: Spotify.getCurrentUserId()', this.state.userId)
+		console.log('this.state.playlists', this.state.playlists)
 	}
-	createDataFetchObject() {
+	// createDataFetchObject() {
 		
-	}
+	// }
 
-	userDataFetch = async() => {
+	// userDataFetch = async() => {
+		setTimeout(userDataFetch() {}, 1000)
 		
-		
 
-		const accessToken = await Spotify.getAccessToken();
-		const userId  = await Spotify.getCurrentUserId();
-		const userPlaylist =  await Spotify.getUserPlaylists();
+	// 	const accessToken = await Spotify.getAccessToken();
+	// 	const userId  = await Spotify.getCurrentUserId();
+	// 	const userPlaylist =  this.state
 
-		// console.log('this.userId', this.state.userId)
-		// console.log('playlists', this.state.playlists)
+	// 	// console.log('this.userId', this.state.userId)
+	// 	// console.log('playlists', this.state.playlists)
 		
 		 
-			this.state.userDataObject = {
-				accessToken: accessToken, 
-				userId: userId, 
-				playlists: userPlaylist
-			}
+	// 		this.state.userDataObject = {
+	// 			accessToken: accessToken, 
+	// 			userId: userId, 
+	// 			playlists: userPlaylist
+	// 		}
+
+			
+
 			// console.log('this.userDataObject.userId', this.userDataObject)
 			// console.log('userId', Spotify.getCurrentUserId())
-			console.log(this.state.userDataObject)
+				
 		
 		// console.log(Spotify.getAccessToken())
 		
@@ -72,7 +81,7 @@ class App extends React.Component {
 		
 		
 
-	}
+	// }
 	// const userPlaylists = userDataFetch()
 	// console.log('userPlaylists', userPlaylists)
 
@@ -80,6 +89,7 @@ class App extends React.Component {
 	search(term) {
 		Spotify.search(term).then((searchResults) => {
 			this.setState({ searchResults: searchResults });
+			
 		});
 	}
 
@@ -152,6 +162,7 @@ class App extends React.Component {
 							onSave={this.savePlaylist}
 							// playlistList={this.userDataObject}
 							userPlaylist={this.state.userDataObject}
+							
 						/>
 					</div>
 				</div>
