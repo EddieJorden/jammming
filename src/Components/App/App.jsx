@@ -26,31 +26,33 @@ class App extends React.Component {
 		// console.log('this.userPlaylists', this.userPlaylists)
 		// console.log('Spotify.getUserPlaylists()', Spotify.getUserPlaylists())
 		// console.log('props object :) ', props)
+		console.log('this.userData', this.userData)
 
 		
 
 		this.state = {
+
 			searchResults: [],
 			playlistName: 'playlistName',
 			playlistTracks: [],
 			// userDataObject: this.userDataFetch(),
 			accessToken: Spotify.getAccessToken,
 			userId: Spotify.getCurrentUserId,
-			playlists: Spotify
+			playlists: Spotify.fetchUserStuff
 			
 
 		}
 		// console.log('this.state.userDataObject', this.state.userDataObject)
-		console.log('this.state.accessToken', this.state.accessToken)
-		console.log('userId: Spotify.getCurrentUserId()', this.state.userId)
-		console.log('this.state.playlists', this.state.playlists)
+		// console.log('this.state.accessToken', this.state.accessToken)
+		// console.log('userId: Spotify.getCurrentUserId()', this.state.userId)
+		// console.log('this.state.playlists', this.state.playlists)
 	}
 	// createDataFetchObject() {
 		
 	// }
 
 	// userDataFetch = async() => {
-		setTimeout(userDataFetch() {}, 1000)
+		// setTimeout(Spotify.userDataFetch() {}, 1000)
 		
 
 	// 	const accessToken = await Spotify.getAccessToken();
@@ -161,8 +163,7 @@ class App extends React.Component {
 							onNameChange={this.updatePlaylistName}
 							onSave={this.savePlaylist}
 							// playlistList={this.userDataObject}
-							userPlaylist={this.state.userDataObject}
-							
+							userData={this.userData}
 						/>
 					</div>
 				</div>

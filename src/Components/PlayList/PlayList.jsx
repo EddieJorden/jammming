@@ -8,9 +8,11 @@ class PlayList extends React.Component {
 		super(props);
 		
 		this.handleNameChange = this.handleNameChange.bind(this);
+		this.playlistArray = props.userPlaylist
 
-		this.playlistListArray = props
+		console.log('props.userData', props.userData)
 		
+
 		// console.log('this.props in being passed down from app to playlist', this.playlistListArray)
 	}
 
@@ -29,7 +31,7 @@ class PlayList extends React.Component {
 					onChange={this.handleNameChange}
 				/>
 				<div>saved playlists below here</div>
-				<PlaylistList playlistArray={this.playlistListArray}/>
+				{true ? <PlaylistList userData={this.props.userData}/> : "loading"}
 				<TrackList
 					onRemove={this.props.onRemove}
 					isRemoval={true}

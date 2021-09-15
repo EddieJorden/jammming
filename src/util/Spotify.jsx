@@ -14,19 +14,21 @@ const redirectUri = 'http://localhost:3000/';
 const Spotify = {
 
 	async fetchUserStuff() {
-	
+		
 			await this.getAccessToken()
 			await this.getCurrentUserId()
 			await this.getUserPlaylists()
+			
 			return {
-				accessToken: this.accessToken,
-				userId: this.userId,
-				playlistArray: this.playlistArray
+				accessToken: accessToken,
+				userId: userId,
+				playlistArray: playlistArray
 			}
+			
 		
 		
 	},
-
+	
 
 	getCurrentUserId() {	
 
@@ -201,6 +203,7 @@ const Spotify = {
 
 }
 
+// console.log('this.fetchUserStuff', Spotify.fetchUserStuff())
 // const currentUserId = Spotify.getCurrentUserId()
 // Spotify.getCurrentUserId(userId)
 // console.log(userId)
