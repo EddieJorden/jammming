@@ -3,26 +3,21 @@ import './PlayList.css';
 import TrackList from '../TrackList/TrackList';
 import PlaylistList from '../PlaylistList/PlaylistList';
 
-class PlayList extends React.Component {
+class Playlist extends React.Component {
 	constructor(props) {
 		super(props);
-		
 		this.handleNameChange = this.handleNameChange.bind(this);
 		this.playlistArray = props.userPlaylist
-
-		console.log('props.userData', props.userData)
-		
-
-		// console.log('this.props in being passed down from app to playlist', this.playlistListArray)
 	}
-
 	
-
 	handleNameChange(event) {
 		this.props.onNameChange(event.target.value);
 	}
-
+	
 	render() {
+
+		const {playlistArray} = this.props.userData
+		
 		return (
 			<div className="Playlist">
 				<input
@@ -31,7 +26,7 @@ class PlayList extends React.Component {
 					onChange={this.handleNameChange}
 				/>
 				<div>saved playlists below here</div>
-				{true ? <PlaylistList userData={this.props.userData}/> : "loading"}
+				<PlaylistList playlistArray={playlistArray}/>
 				<TrackList
 					onRemove={this.props.onRemove}
 					isRemoval={true}
@@ -46,4 +41,4 @@ class PlayList extends React.Component {
 	}
 }
 
-export default PlayList;
+export default Playlist;
