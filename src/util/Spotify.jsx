@@ -59,16 +59,13 @@ const Spotify = {
 			return response.json();
 		})
 		.then((jsonResponse) => {
-			for(let i = 0; i < jsonResponse.items.length; i++) {
-				// console.log('jsonResponse[i] in iterator', jsonResponse.items[i])
-				playlistArray.push(jsonResponse.items[i].name)
-			}
+			playlistArray = jsonResponse.items.map((playlist) => playlist.name)
+			console.log(jsonResponse)
 			// array of objects
 			return playlistArray
 		})	
-
 	},
-
+	
 	search(term) {
 		if (term === "") {
 			return
