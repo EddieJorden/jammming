@@ -72,7 +72,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<h1>
-					Jam<span className="highlight">mm</span>ing
+					My<span className="highlight">jams</span>
 				</h1>
 				<div className="App">
 					<SearchBar onSearch={this.search} />
