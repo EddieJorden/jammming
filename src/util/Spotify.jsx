@@ -2,7 +2,7 @@ let accessToken = '';
 let userId = 'fred'
 let playlistArray = []
 const clientId = '61f83afec4ac462b90b05d4150d419ea';
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'https://eddiejorden.github.io/my-jams/';
 
 const Spotify = {
 	async fetchUserStuff() {
