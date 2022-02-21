@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/my-jams/static/css/main.234f33ea.css",
-    "main.js": "/my-jams/static/js/main.64ca19e9.js",
+    "main.js": "/my-jams/static/js/main.cae2eb30.js",
     "static/js/787.0d219bea.chunk.js": "/my-jams/static/js/787.0d219bea.chunk.js",
     "static/media/music-background-desktop.jpeg": "/my-jams/static/media/music-background-desktop.48dbb32f61310852bdad.jpeg",
     "index.html": "/my-jams/index.html",
     "main.234f33ea.css.map": "/my-jams/static/css/main.234f33ea.css.map",
-    "main.64ca19e9.js.map": "/my-jams/static/js/main.64ca19e9.js.map",
+    "main.cae2eb30.js.map": "/my-jams/static/js/main.cae2eb30.js.map",
     "787.0d219bea.chunk.js.map": "/my-jams/static/js/787.0d219bea.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.234f33ea.css",
-    "static/js/main.64ca19e9.js"
+    "static/js/main.cae2eb30.js"
   ]
 }
