@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.c76332d5.css",
-    "main.js": "/static/js/main.2e5ba8fa.js",
-    "static/js/787.0d219bea.chunk.js": "/static/js/787.0d219bea.chunk.js",
-    "static/media/music-background-desktop.jpeg": "/static/media/music-background-desktop.48dbb32f61310852bdad.jpeg",
-    "index.html": "/index.html",
-    "main.c76332d5.css.map": "/static/css/main.c76332d5.css.map",
-    "main.2e5ba8fa.js.map": "/static/js/main.2e5ba8fa.js.map",
-    "787.0d219bea.chunk.js.map": "/static/js/787.0d219bea.chunk.js.map"
+    "main.css": "/my-jams/static/css/main.234f33ea.css",
+    "main.js": "/my-jams/static/js/main.64ca19e9.js",
+    "static/js/787.0d219bea.chunk.js": "/my-jams/static/js/787.0d219bea.chunk.js",
+    "static/media/music-background-desktop.jpeg": "/my-jams/static/media/music-background-desktop.48dbb32f61310852bdad.jpeg",
+    "index.html": "/my-jams/index.html",
+    "main.234f33ea.css.map": "/my-jams/static/css/main.234f33ea.css.map",
+    "main.64ca19e9.js.map": "/my-jams/static/js/main.64ca19e9.js.map",
+    "787.0d219bea.chunk.js.map": "/my-jams/static/js/787.0d219bea.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c76332d5.css",
-    "static/js/main.2e5ba8fa.js"
+    "static/css/main.234f33ea.css",
+    "static/js/main.64ca19e9.js"
   ]
 }
