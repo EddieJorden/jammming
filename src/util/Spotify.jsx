@@ -1,7 +1,7 @@
 let accessToken = '';
 let userId = 'fred'
 let playlistArray = []
-const clientId = '61f83afec4ac462b90b05d4150d419ea';
+const clientId = '20ba39e238024535ab5f10f8ef494d38';
 const redirectUri = 'https://eddiejorden.github.io/my-jams/';
 
 const Spotify = {
